@@ -92,11 +92,14 @@ export function createService({ compilerOptions, configFile }: createServiceOpti
     const service = ts.createLanguageService(servicesHost, ts.createDocumentRegistry());
 
     return {
-        update({ fileName, fileContent }: { fileName: string, fileContent: string }) {
+        update({ fileName, fileContent }: { fileName: string, fileContent?: string }) {
             fileName = fileName.replace(/\\/g, '/');
             let fileRef = files[fileName];
             if (!fileRef) {
                 files[fileName] = fileRef = { version: 0, snapshot: undefined };
+            }
+            if (fileContent === undefined) {
+                fileContent = readFileSync(fileName, 'utf8');
             }
             fileRef.snapshot = ts.ScriptSnapshot.fromString(fileContent);
             fileRef.version++;
