@@ -1,0 +1,99 @@
+{
+  "name": "typescript-service",
+  "version": "0.0.0-dev",
+  "license": "MIT",
+  "description": "",
+  "main": "dist/index.js",
+  "typings": "src/index.ts",
+  "scripts": {
+    "t": "npm run mocha -- src/*.spec.ts",
+    "test": "npm run eslint && npm run tscheck && npm run t",
+    "test:r": "npm run mocha -- src/*.spec.ts",
+    "mocha": "node -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha",
+    "test:w": "npm run mocha -- --watch-extensions ts --watch src/**/*.spec.ts",
+    "test:d": "node --inspect-brk -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha --no-timeouts src/**/*.spec.ts",
+    "tscheck": "echo tscheck... && tsc --noEmit",
+    "tscheck:w": "npm run tscheck -- --watch",
+    "tsclint": "tsc --noEmit --pretty --strict --forceConsistentCasingInFileNames --noImplicitReturns --noImplicitThis --noUnusedLocals --noUnusedParameters",
+    "tsclint:w": "npm run tsclint -- --watch",
+    "eslint": "eslint src --ext ts",
+    "eslint:fix": "eslint src --ext \"ts\" --fix",
+    "eslint:w": "chokidar \"src/**/*.ts\" --initial -c \"npm run eslint\"",
+    "lint:w": "run-p tsclint:w eslint:w",
+    "semantic-release": "semantic-release",
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "prebuild": "npm run clean",
+    "clean": "rimraf dist",
+    "commit": "git-cz"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@semantic-release/changelog": "^2.1.1",
+    "@semantic-release/git": "^6.0.1",
+    "@semantic-release/npm": "^3.3.4",
+    "@types/mocha": "^5.2.3",
+    "@types/node": "^10.5.1",
+    "chokidar-cli": "^1.2.0",
+    "conventional-changelog-eslint": "^3.0.0",
+    "cz-adapter-eslint": "^0.1.2",
+    "eslint": "^5.0.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-tslint": "^2.1.0",
+    "eslint-plugin-typescript": "^0.12.0",
+    "eslint-plugin-unicorn": "^4.0.3",
+    "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.3",
+    "rimraf": "^2.6.2",
+    "semantic-release": "^15.6.0",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.10.0",
+    "tslint-clean-code": "^0.2.7",
+    "tslint-microsoft-contrib": "^5.0.3",
+    "typescript": "^2.9.2",
+    "typescript-eslint-parser": "^16.0.1"
+  },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unlight/typescript-service.git"
+  },
+  "keywords": [],
+  "release": {
+    "generateNotes": {
+      "preset": "eslint"
+    },
+    "analyzeCommits": {
+      "preset": "eslint"
+    },
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "publish": [
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ],
+    "success": [
+      "@semantic-release/github"
+    ],
+    "fail": [
+      "@semantic-release/github"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-adapter-eslint"
+    }
+  }
+}
