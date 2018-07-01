@@ -1,6 +1,8 @@
 import * as assert from 'assert';
 import * as lib from './index';
 
+const root = process.cwd();
+
 let service: ReturnType<typeof lib.createService>;
 
 it('smoke', () => {
@@ -10,13 +12,13 @@ it('smoke', () => {
 describe('create service', () => {
 
     before(() => {
-        const configFile = `${__dirname}/test-project/tsconfig.json`;
+        const configFile = `${root}/test-project/tsconfig.json`;
         service = lib.createService({ configFile });
         assert(service);
     });
 
     it('errors', () => {
-        const testFile = `${__dirname}/test-project/errors.ts`;
+        const testFile = `${root}/test-project/errors.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -27,7 +29,7 @@ describe('create service', () => {
     });
 
     it('number', () => {
-        const testFile = `${__dirname}/test-project/number.ts`;
+        const testFile = `${root}/test-project/number.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -36,7 +38,7 @@ describe('create service', () => {
     });
 
     it('built in', () => {
-        const testFile = `${__dirname}/test-project/builtin.ts`;
+        const testFile = `${root}/test-project/builtin.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -45,7 +47,7 @@ describe('create service', () => {
     });
 
     it('types', () => {
-        const testFile = `${__dirname}/test-project/types.ts`;
+        const testFile = `${root}/test-project/types.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -54,7 +56,7 @@ describe('create service', () => {
     });
 
     it('decorator', () => {
-        const testFile = `${__dirname}/test-project/decorator.ts`;
+        const testFile = `${root}/test-project/decorator.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -63,7 +65,7 @@ describe('create service', () => {
     });
 
     it('global types', () => {
-        const testFile = `${__dirname}/test-project/global-types.ts`;
+        const testFile = `${root}/test-project/global-types.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -72,7 +74,7 @@ describe('create service', () => {
     });
 
     it('date', () => {
-        const testFile = `${__dirname}/test-project/date.ts`;
+        const testFile = `${root}/test-project/date.ts`;
         service.update({ fileName: testFile });
         const sourceFile = service.getProgram().getSourceFile(testFile);
         assert(sourceFile);
@@ -83,7 +85,7 @@ describe('create service', () => {
 });
 
 it('create service no libs', () => {
-    const configFile = `${__dirname}/test-project/tsconfig-nolibs.json`;
+    const configFile = `${root}/test-project/tsconfig-nolibs.json`;
     service = lib.createService({ configFile });
     assert(service);
 });
