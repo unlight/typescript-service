@@ -1,3 +1,13 @@
+## 2.0.0 (2018-08-24)
+
+* docs: Updated README ([32e1449](https://github.com/unlight/typescript-service/commit/32e1449))
+* feat: API revision ([68044bb](https://github.com/unlight/typescript-service/commit/68044bb))
+
+
+### BREAKING CHANGE
+
+* Removed update method
+
 # 1.0.0 (2018-07-01)
 
 
