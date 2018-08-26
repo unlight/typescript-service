@@ -8,7 +8,7 @@ type CreateProgramArgument = {
     projectDirectory?: string;
 };
 
-export function createProgram({ configFile, projectDirectory = path.dirname(configFile), compilerOptions = {} }: CreateProgramArgument): ts.Program {
+export function createProgram({ configFile, projectDirectory = path.dirname(configFile), compilerOptions = {} }: CreateProgramArgument) {
     const { config, error } = ts.readConfigFile(configFile, ts.sys.readFile);
     if (error !== undefined) {
         throw new Error(ts.formatDiagnostics([error], {
@@ -48,5 +48,5 @@ export function createProgram({ configFile, projectDirectory = path.dirname(conf
     const host = ts.createCompilerHost(parsed.options, true);
     const program = ts.createProgram(parsed.fileNames, parsed.options, host);
 
-    return program;
+    return { program, host };
 }

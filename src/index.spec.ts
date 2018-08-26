@@ -31,6 +31,16 @@ describe('tsconfig-files', () => {
         const sourceFile = service.getSourceFile(testFile);
         assert(sourceFile);
     });
+
+    it('typescript checker (file which is not defined in tsconfig)', () => {
+        const testFile = `${root}/test-project/file.spec.ts`;
+        const sourceFile = service.getSourceFile(testFile);
+        const checker = service.getProgram().getTypeChecker();
+        const [itstmt] = sourceFile.statements.filter(x => x.getText() === `it('example test');`);
+        const itid = (itstmt as any).expression.expression;
+        const symbol = checker.getSymbolAtLocation(itid);
+        assert(symbol);
+    });
 });
 
 describe('create service', () => {
