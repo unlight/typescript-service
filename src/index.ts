@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import { createProgram } from './create-program';
+import { getSourceFile } from './get-source-file';
 
 type createServiceOptions = {
     configFile: string;
@@ -18,7 +19,7 @@ export function createService({ compilerOptions, configFile }: createServiceOpti
                 program = ts.createProgram(rootFileNames, program.getCompilerOptions(), host, program);
                 sourceFile = program.getSourceFile(fileName);
             }
-            return sourceFile;
+            return sourceFile || getSourceFile(program, fileName, sourceText);
         },
         getDiagnostics: (fileName: string, sourceText?: string) => {
             const sourceFile = api.getSourceFile(fileName, sourceText);
