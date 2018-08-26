@@ -1,3 +1,7 @@
+## <small>2.0.2 (2018-08-26)</small>
+
+* fix: Restored getSource file fallback implementation ([e29755c](https://github.com/unlight/typescript-service/commit/e29755c))
+
 ## <small>2.0.1 (2018-08-26)</small>
 
 * fix: getSourceFile fail fixed if file is not defined in tsconfig ([3225ea7](https://github.com/unlight/typescript-service/commit/3225ea7))
