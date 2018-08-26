@@ -1,3 +1,7 @@
+## <small>2.0.1 (2018-08-26)</small>
+
+* fix: getSourceFile fail fixed if file is not defined in tsconfig ([3225ea7](https://github.com/unlight/typescript-service/commit/3225ea7))
+
 ## 2.0.0 (2018-08-24)
 
 * docs: Updated README ([32e1449](https://github.com/unlight/typescript-service/commit/32e1449))
