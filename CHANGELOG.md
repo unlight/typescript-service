@@ -1,3 +1,8 @@
+## <small>2.0.3 (2018-08-28)</small>
+
+* fix: Added missing packages ([9e880d4](https://github.com/unlight/typescript-service/commit/9e880d4))
+* fix: Update source bug when using eslint in watch mode ([481c177](https://github.com/unlight/typescript-service/commit/481c177))
+
 ## <small>2.0.2 (2018-08-26)</small>
 
 * fix: Restored getSource file fallback implementation ([e29755c](https://github.com/unlight/typescript-service/commit/e29755c))
